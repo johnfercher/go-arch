@@ -5,12 +5,17 @@ import (
 	"os"
 )
 
-func Generate(dir string, node *Node) error {
+func Generate(dir string, apiName string, node *Node) error {
 	if node.Key != "structure" {
 		return errors.New("invalid sub tree")
 	}
 
-	content := dir
+	content := dir + "/" + apiName
+	err := os.Mkdir(content, os.ModePerm)
+	if err != nil {
+		return err
+	}
+
 	for _, inner := range node.Nodes {
 		err := generate(content, inner)
 		if err != nil {

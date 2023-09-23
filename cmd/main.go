@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	node, err := pkg.Load("templates/hexagonal.yml")
+	node, err := pkg.Load("templates/architecture/hexagonal.yml")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -16,7 +16,9 @@ func main() {
 		log.Fatal("not found")
 	}
 
-	err = pkg.Generate("docs/examples", structure)
+	apiName := "hexagonal"
+
+	err = pkg.Generate("docs/examples", apiName, structure)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
