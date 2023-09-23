@@ -4,13 +4,12 @@ structure:
       - main.go
 
   internal:
-    api_name:
-      core:
-        domain:
-        ports:
-        services:
-      handlers:
-      repositories:
+    core:
+      domain:
+      ports:
+      services:
+    handlers:
+    repositories:
 
 dependency_allowance:
   domain:
