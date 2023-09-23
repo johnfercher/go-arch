@@ -1,21 +1,16 @@
-package pkg
+package loader
 
-import "reflect"
+import (
+	"github.com/johnfercher/go-arch/pkg"
+	"reflect"
+)
 
 var mapValue = make(map[string]interface{})
 var mapReflection = reflect.ValueOf(mapValue)
 var mapType = mapReflection.Type()
 
-var arrValue = make([]interface{}, 0)
-var arrReflection = reflect.ValueOf(arrValue)
-var arrType = arrReflection.Type()
-
-var stringValue string
-var stringReflection = reflect.ValueOf(stringValue)
-var stringType = stringReflection.Type()
-
-func BuildTree(key string, data interface{}) *Node {
-	node := &Node{
+func BuildTree(key string, data interface{}) *pkg.Node {
+	node := &pkg.Node{
 		Key: key,
 	}
 

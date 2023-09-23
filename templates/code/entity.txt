@@ -1,0 +1,5 @@
+package {package}
+
+type {struct} struct {
+	Value string
+}

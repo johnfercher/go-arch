@@ -6,10 +6,18 @@ structure:
   internal:
     core:
       domain:
+        - entity
       ports:
+        - serviceInterface>entity
+        - repositoryInterface>entity
+        - clientInterface>entity
       services:
+        - service>serviceInterface
     handlers:
-    repositories:
+      - handler>service
+    adapters:
+      - repository>repositoryInterface
+      - client>clientInterface
 
 dependency_allowance:
   domain:

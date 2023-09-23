@@ -1,0 +1,7 @@
+package {package}
+
+import "{module}/{dir}/{entity_package}"
+
+type {interface} interface {
+	Method() {entity_package}.Entity
+}
