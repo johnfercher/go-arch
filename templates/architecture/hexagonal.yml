@@ -1,7 +1,7 @@
 structure:
   cmd:
     api:
-      - main.go
+      - main
 
   internal:
     core:

@@ -21,7 +21,7 @@ func NewEntityWriter(loader loader.Loader, node *pkg.Node) *entityWriter {
 	}
 }
 
-func (e *entityWriter) WriteFile(path string, dir string) error {
+func (e *entityWriter) WriteFile(path string, dir string, value string) error {
 	bytes, err := e.loader.LoadFile(e.file)
 	if err != nil {
 		return err
@@ -31,5 +31,7 @@ func (e *entityWriter) WriteFile(path string, dir string) error {
 	stringValue = strings.ReplaceAll(stringValue, "{package}", dir)
 	stringValue = strings.ReplaceAll(stringValue, "{struct}", "Entity")
 
-	return os.WriteFile(path+"/"+dir+"/entity.go", []byte(stringValue), os.ModePerm)
+	filePath := path + "/" + dir + "/" + value + ".go"
+
+	return os.WriteFile(filePath, []byte(stringValue), os.ModePerm)
 }

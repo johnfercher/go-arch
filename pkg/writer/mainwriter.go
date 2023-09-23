@@ -20,13 +20,13 @@ func NewMainWriter(loader loader.Loader, node *pkg.Node) *mainWriter {
 	}
 }
 
-func (m *mainWriter) WriteFile(path string, dir string) error {
+func (m *mainWriter) WriteFile(path string, dir string, value string) error {
 	bytes, err := m.loader.LoadFile(m.file)
 	if err != nil {
 		return err
 	}
 
-	filePath := path + "/" + dir + "/main.go"
+	filePath := path + "/" + dir + "/" + value + ".go"
 
 	return os.WriteFile(filePath, bytes, os.ModePerm)
 }

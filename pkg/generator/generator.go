@@ -69,7 +69,7 @@ func (g *generator) generate(dir string, node *pkg.Node) error {
 func (g *generator) createFile(path string, dir string, value string) error {
 	writer := g.factory.Create(value)
 	if writer != nil {
-		return writer.WriteFile(path, dir)
+		return writer.WriteFile(path, dir, value)
 	}
 	return nil
 }

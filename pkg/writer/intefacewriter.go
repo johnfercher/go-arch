@@ -23,7 +23,7 @@ func NewInterfaceWriter(loader loader.Loader, node *pkg.Node) *interfaceWriter {
 	}
 }
 
-func (i *interfaceWriter) WriteFile(path string, dir string) error {
+func (i *interfaceWriter) WriteFile(path string, dir string, value string) error {
 	bytes, err := i.loader.LoadFile(i.goMod)
 	if err != nil {
 		return err
@@ -37,10 +37,21 @@ func (i *interfaceWriter) WriteFile(path string, dir string) error {
 		return err
 	}
 
+	values := strings.Split(value, ">")
+	cleanedValue := strings.ReplaceAll(values[0], "Interface", "")
+
+	upperCleaned := cleanedValue
+	upperCleaned = strings.Replace(upperCleaned, string(upperCleaned[0]), strings.ToUpper(string(upperCleaned[0])), 1)
+
 	stringValue := string(bytes)
 	stringValue = strings.ReplaceAll(stringValue, "{package}", dir)
-	stringValue = strings.ReplaceAll(stringValue, "{interface}", "Interface")
+	stringValue = strings.ReplaceAll(stringValue, "{entity_package}", dir)
+	stringValue = strings.ReplaceAll(stringValue, "{dir}", path)
+	stringValue = strings.ReplaceAll(stringValue, "{path}", path)
+	stringValue = strings.ReplaceAll(stringValue, "{interface}", upperCleaned)
 	stringValue = strings.ReplaceAll(stringValue, "{module}", goMod)
 
-	return os.WriteFile(path+"/"+dir+"/interface.go", []byte(stringValue), os.ModePerm)
+	filePath := path + "/" + dir + "/" + cleanedValue + ".go"
+
+	return os.WriteFile(filePath, []byte(stringValue), os.ModePerm)
 }

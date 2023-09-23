@@ -16,7 +16,7 @@ type factory struct {
 
 func New(loader loader.Loader, node *pkg.Node) *factory {
 	writers := make(map[string]Writer)
-	writers["main.go"] = NewMainWriter(loader, node)
+	writers["main"] = NewMainWriter(loader, node)
 	writers["entity"] = NewEntityWriter(loader, node)
 	writers["interface"] = NewInterfaceWriter(loader, node)
 
