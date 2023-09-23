@@ -1,0 +1,29 @@
+structure:
+  cmd:
+    api:
+      - main.go
+
+  internal:
+    api_name:
+      core:
+        domain:
+        ports:
+        services:
+      handlers:
+      repositories:
+
+dependency_allowance:
+  domain:
+    - none
+  ports:
+    - domain
+  services:
+    - domain
+  core:
+    - domain
+    - ports
+    - services
+  handlers:
+    - ports
+  repositories:
+    - ports
